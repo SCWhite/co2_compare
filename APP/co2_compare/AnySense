@@ -1,0 +1,30 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2015 OpenWrt.org
+
+START=99
+
+
+start()
+{
+
+	sleep 30
+        [ -f /root/co2_compare/co2_compare.py ] && {
+		/usr/bin/git -C /root/co2_compare fetch origin
+		/usr/bin/git -C /root/co2_compare reset --hard origin/master
+		/usr/bin/python /root/co2_compare/AnySense_RTC.py &>/dev/null
+		/usr/bin/python /root/co2_compare/co2_compare.py &>/dev/null
+        } || {
+        /usr/bin/git clone https://github.com/SCWhite/co2_compare /root/co2_compare
+		/usr/bin/python /root/co2_compare/AnySense_RTC.py &>/dev/null
+		/usr/bin/python /root/co2_compare/co2_compare.py &>/dev/null
+        }
+
+
+}
+
+stop()
+{
+        [ -f /root/co2_compare/co2_compare.py ] && {
+		rm -rf /root/co2_compare
+	}
+}

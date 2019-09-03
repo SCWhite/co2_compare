@@ -1,0 +1,1 @@
+0 0 * * * /usr/bin/python /root/co2_compare/AnySense_RTC.py &>/dev/null 

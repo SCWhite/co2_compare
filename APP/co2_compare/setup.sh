@@ -1,4 +1,4 @@
-cp /root/AnySense_7688/APP/IAQ_TW/AnySense /etc/init.d
+cp /root/co2_compare/APP/co2_compare/AnySense /etc/init.d
 chmod 755 /etc/init.d/AnySense
 /etc/init.d/AnySense enable
 
@@ -10,8 +10,8 @@ mkfs.ext4 /dev/mmcblk0p1
 block detect > /etc/config/fstab
 echo "	option	enabled	'1'" >> /etc/config/fstab
 
-python /root/AnySense_7688/AnySense_RTC.py -d 0 -k $1
-crontab /root/AnySense_7688/APP/IAQ_TW/RTC_cron
+python /root/co2_compare/AnySense_RTC.py -d 0 -k $1
+crontab /root/co2_compare/APP/co2_compare/RTC_cron
 
 reboot
 
