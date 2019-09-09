@@ -4,6 +4,7 @@ import string
 import os
 import subprocess
 
+
 from datetime import datetime
 
 import co2_compare_config as Conf

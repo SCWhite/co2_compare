@@ -5,9 +5,9 @@ from multiprocessing import Queue,Process
 
 import move_avge
 
-CO2_BYTE = 9
-NUM_INCOME_BYTE = 13
-S8_message = b"\xFE\x04\x00\x00\x00\x04\xE5\xC6"
+CO2_BYTE = 3
+NUM_INCOME_BYTE = 7
+hw_message = b"\xFE\x04\x00\x07\x00\x01\x94\x04"
 
 class sensor(Process):
 	def __init__(self, q):
@@ -42,7 +42,7 @@ class sensor(Process):
 
 	def run(self):
 		while True:
-			self.u.writeStr(S8_message)
+			self.u.writeStr(hw_message)
 			self.u.flush()
 			if self.u.dataAvailable():
 				time.sleep(0.05)
